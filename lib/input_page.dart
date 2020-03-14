@@ -1,13 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'IconContent.dart';
-import 'Reuseable_Card.dart';
-
-const Color inactiveCardColor = Color(0xFF111428);
-const Color activeCardColor = Color(0xFF1D1F33);
-const Color defaultTextColor = Color(0xFF8D8E98);
-const Color selectedTextColor = Color(0xFFFFFFFF);
-const Color accentColor = Color(0xFFFF0167);
+import 'iconContent.dart';
+import 'reuseable_Card.dart';
+import 'constants.dart';
 
 enum Gender { male, female }
 
@@ -18,6 +14,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -25,60 +22,99 @@ class _InputPageState extends State<InputPage> {
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
       ),
-      body: Column(children: <Widget>[
-        Expanded(
-          child: Row(children: <Widget>[
+      body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
             Expanded(
-              child: ReuseableCard(
-                  onPress: () {
-                    setState(() {
-                      selectedGender = Gender.male;
-                    });
-                  },
-                  colour: selectedGender == Gender.male
-                      ? activeCardColor
-                      : inactiveCardColor,
-                  cardChild: IconContent(FontAwesomeIcons.male, 'MALE')),
+              child: Row(children: <Widget>[
+                Expanded(
+                  child: ReuseableCard(
+                      onPress: () {
+                        setState(() {
+                          selectedGender = Gender.male;
+                        });
+                      },
+                      colour: selectedGender == Gender.male
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      cardChild: IconContent(FontAwesomeIcons.male, 'MALE')),
+                ),
+                Expanded(
+                  child: ReuseableCard(
+                    onPress: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    },
+                    colour: selectedGender == Gender.female
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
+                    cardChild: IconContent(FontAwesomeIcons.female, 'FEMALE'),
+                  ),
+                ),
+              ]),
             ),
             Expanded(
-              child: ReuseableCard(
-                onPress: () {
-                  setState(() {
-                    selectedGender = Gender.female;
-                  });
-                },
-                colour: selectedGender == Gender.female
-                    ? activeCardColor
-                    : inactiveCardColor,
-                cardChild: IconContent(FontAwesomeIcons.female, 'FEMALE'),
-              ),
+              child: Row(children: <Widget>[
+                Expanded(
+                  child: ReuseableCard(
+                    colour: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'HEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
+                            children: <Widget>[
+                              Text(
+                                height.toString(),
+                                style: kLargeText,
+                              ),
+                              Text(
+                                'cm',
+                                style: kLabelTextStyle,
+                              )
+                            ]),
+                        Slider(
+                          activeColor: kAccentColor,
+                          inactiveColor: kDefaultTextColor,
+                          value: height.toDouble(),
+                          min: 110.0,
+                          max: 225.0,
+                          onChanged: (double newValue) {
+                            setState(() {
+                              height = newValue.round();
+                            });
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ]),
             ),
+//        Expanded(
+//          child: Row(children: <Widget>[
+//            Expanded(
+//              child: ReuseableCard(activeCardColor),
+//            ),
+//            Expanded(
+//              child: ReuseableCard(activeCardColor),
+//            ),
+//          ]),
+//        ),
+            Container(
+              color: kAccentColor,
+              margin: EdgeInsets.only(top: 16.0),
+              width: double.infinity,
+              height: 80.0,
+            )
           ]),
-        ),
-//        Expanded(
-//          child: Row(children: <Widget>[
-//            Expanded(
-//              child: ReuseableCard(activeCardColor),
-//            ),
-//          ]),
-//        ),
-//        Expanded(
-//          child: Row(children: <Widget>[
-//            Expanded(
-//              child: ReuseableCard(activeCardColor),
-//            ),
-//            Expanded(
-//              child: ReuseableCard(activeCardColor),
-//            ),
-//          ]),
-//        ),
-        Container(
-          color: accentColor,
-          margin: EdgeInsets.only(top: 16.0),
-          width: double.infinity,
-          height: 80.0,
-        )
-      ]),
     );
   }
 }
