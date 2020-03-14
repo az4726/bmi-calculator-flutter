@@ -17,26 +17,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
-
-  void updateCardColor(Gender gender) {
-    if (gender == Gender.male) {
-      if (maleCardColor == inactiveCardColor) {
-        maleCardColor = activeCardColor;
-        femaleCardColor = inactiveCardColor;
-      } else {
-        maleCardColor = inactiveCardColor;
-      }
-    } else if (gender == Gender.female) {
-      if (femaleCardColor == inactiveCardColor) {
-        femaleCardColor = activeCardColor;
-        maleCardColor = inactiveCardColor;
-      } else {
-        femaleCardColor = inactiveCardColor;
-      }
-    }
-  }
+  Gender selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +32,13 @@ class _InputPageState extends State<InputPage> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    updateCardColor(Gender.male);
+                    selectedGender = Gender.male;
                   });
                 },
                 child: ReuseableCard(
-                    colour: maleCardColor,
+                    colour: selectedGender == Gender.male
+                        ? activeCardColor
+                        : inactiveCardColor,
                     cardChild: IconContent(FontAwesomeIcons.male, 'MALE')),
               ),
             ),
@@ -63,11 +46,13 @@ class _InputPageState extends State<InputPage> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    updateCardColor(Gender.female);
+                    selectedGender = Gender.female;
                   });
                 },
                 child: ReuseableCard(
-                  colour: femaleCardColor,
+                  colour: selectedGender == Gender.female
+                      ? activeCardColor
+                      : inactiveCardColor,
                   cardChild: IconContent(FontAwesomeIcons.female, 'FEMALE'),
                 ),
               ),
