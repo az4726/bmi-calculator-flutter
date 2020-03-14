@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'IconContent.dart';
+import 'Reuseable_Card.dart';
 
 const Color defaultCardColor = Color(0xFF111428);
 const Color selectedCardColor = Color(0xFF1D1F33);
+const Color defaultTextColor = Color(0xFF8D8E98);
+const Color selectedTextColor = Color(0xFFFFFFFF);
 const Color accentColor = Color(0xFFFF0167);
 
 class InputPage extends StatefulWidget {
@@ -20,30 +25,38 @@ class _InputPageState extends State<InputPage> {
         Expanded(
           child: Row(children: <Widget>[
             Expanded(
-              child: ReuseableCard(defaultCardColor),
+              child: GestureDetector(
+                onTap: () {},
+                child: ReuseableCard(
+                    colour: defaultCardColor,
+                    cardChild: IconContent(FontAwesomeIcons.male, 'MALE')),
+              ),
             ),
             Expanded(
-              child: ReuseableCard(defaultCardColor),
+              child: ReuseableCard(
+                colour: defaultCardColor,
+                cardChild: IconContent(FontAwesomeIcons.female, 'FEMALE'),
+              ),
             ),
           ]),
         ),
-        Expanded(
-          child: Row(children: <Widget>[
-            Expanded(
-              child: ReuseableCard(defaultCardColor),
-            ),
-          ]),
-        ),
-        Expanded(
-          child: Row(children: <Widget>[
-            Expanded(
-              child: ReuseableCard(defaultCardColor),
-            ),
-            Expanded(
-              child: ReuseableCard(defaultCardColor),
-            ),
-          ]),
-        ),
+//        Expanded(
+//          child: Row(children: <Widget>[
+//            Expanded(
+//              child: ReuseableCard(defaultCardColor),
+//            ),
+//          ]),
+//        ),
+//        Expanded(
+//          child: Row(children: <Widget>[
+//            Expanded(
+//              child: ReuseableCard(defaultCardColor),
+//            ),
+//            Expanded(
+//              child: ReuseableCard(defaultCardColor),
+//            ),
+//          ]),
+//        ),
         Container(
           color: accentColor,
           margin: EdgeInsets.only(top: 16.0),
@@ -51,21 +64,6 @@ class _InputPageState extends State<InputPage> {
           height: 80.0,
         )
       ]),
-    );
-  }
-}
-
-class ReuseableCard extends StatelessWidget {
-  ReuseableCard(this.colour);
-  final Color colour;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
-        color: colour,
-      ),
     );
   }
 }
