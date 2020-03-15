@@ -68,6 +68,9 @@ class _InputPageState extends State<InputPage> {
                           'HEIGHT',
                           style: kLabelTextStyle,
                         ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -82,6 +85,9 @@ class _InputPageState extends State<InputPage> {
                                 style: kLabelTextStyle,
                               )
                             ]),
+                        SizedBox(
+                          height: 8.0,
+                        ),
                         SliderTheme(
                           data: SliderTheme.of(context).copyWith(
                             activeTrackColor: Colors.white,
@@ -156,6 +162,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReuseableCard(
+                    colour: kActiveCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -163,30 +170,32 @@ class _InputPageState extends State<InputPage> {
                           'AGE',
                           style: kLabelTextStyle,
                         ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
                         Text(
                           age.toString(),
                           style: kLargeText,
                         ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            FloatingActionButton(
-                              backgroundColor: Color(0xFF1C2033),
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                              ),
-                            ),
+                            RoundIconButton(FontAwesomeIcons.minus, () {
+                              setState(() {
+                                age--;
+                              });
+                            }),
                             SizedBox(
-                              width: 8.0,
+                              width: 16.0,
                             ),
-                            FloatingActionButton(
-                              backgroundColor: Color(0xFF1C2033),
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                              ),
-                            ),
+                            RoundIconButton(FontAwesomeIcons.plus, () {
+                              setState(() {
+                                age++;
+                              });
+                            }),
                           ],
                         ),
                       ],
