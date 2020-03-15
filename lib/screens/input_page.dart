@@ -1,11 +1,13 @@
-import 'package:bmi_calculator/results_page.dart';
+import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'iconContent.dart';
-import 'reuseable_Card.dart';
-import 'constants.dart';
+import '../components/iconContent.dart';
+import '../components/reuseable_Card.dart';
+import '../constants.dart';
 import 'results_page.dart';
+import '../components/bottom_button.dart';
+import '../components/round_icon_button.dart';
 
 enum Gender { male, female }
 
@@ -206,48 +208,14 @@ class _InputPageState extends State<InputPage> {
                 ),
               ]),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
+            BottomButton('CALCULATE YOUR BMI', () {
+              Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ResultsPage()),
-                );
-              },
-              child: Container(
-                child: Text(
-                  'CALCULATE YOUR BMI',
-                  style: kLabelTextStyle.copyWith(color: Colors.white),
-                ),
-                color: kAccentColor,
-                margin: EdgeInsets.only(top: 16.0),
-                width: double.infinity,
-                height: 80.0,
-              ),
-            )
+                  MaterialPageRoute(
+                    builder: (context) => ResultsPage(),
+                  ));
+            })
           ]),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton(this.icon, this.onPressed);
-
-  final IconData icon;
-  final Function onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: onPressed,
-      shape: CircleBorder(),
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      fillColor: kCircleButtonColor,
-      child: Icon(
-        icon,
-      ),
     );
   }
 }

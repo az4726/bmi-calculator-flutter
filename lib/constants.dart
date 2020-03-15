@@ -16,3 +16,28 @@ const TextStyle kLargeText = TextStyle(
   fontSize: 48.0,
   fontWeight: FontWeight.w700,
 );
+
+const TextStyle kLargeButtonTextStyle = TextStyle(
+  fontSize: 22.0,
+  fontWeight: FontWeight.w700,
+);
+
+const TextStyle kHeaderText = TextStyle(
+  fontSize: 48.0,
+  fontWeight: FontWeight.w700,
+);
+
+const TextStyle kResultSummaryText = TextStyle(
+  color: Color(0XFF21CD72),
+  fontSize: 22.0,
+);
+
+const TextStyle kResultReadingText = TextStyle(
+  fontSize: 112.0,
+  fontWeight: FontWeight.w700,
+);
+
+const TextStyle kResultDescriptionText = TextStyle(
+  color: Colors.white,
+  fontSize: 20.0,
+);
