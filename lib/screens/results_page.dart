@@ -6,9 +6,12 @@ import 'input_page.dart';
 import '../components/bottom_button.dart';
 
 class ResultsPage extends StatelessWidget {
-  final String resultSummaryLabel = 'NORMAL';
-  final String resultLabel = '22.5';
-  final String resultDescription = 'You have a normal body weight. Good job!';
+  ResultsPage(
+      this.resultLabel, this.resultSummaryLabel, this.resultDescription);
+
+  final String resultSummaryLabel;
+  final String resultLabel;
+  final String resultDescription;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class ResultsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        resultSummaryLabel,
+                        resultSummaryLabel.toUpperCase(),
                         style: kResultSummaryText,
                       ),
                       Text(
@@ -51,6 +54,7 @@ class ResultsPage extends StatelessWidget {
                       Text(
                         resultDescription,
                         style: kResultDescriptionText,
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
