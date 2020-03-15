@@ -80,17 +80,27 @@ class _InputPageState extends State<InputPage> {
                                 style: kLabelTextStyle,
                               )
                             ]),
-                        Slider(
-                          activeColor: kAccentColor,
-                          inactiveColor: kDefaultTextColor,
-                          value: height.toDouble(),
-                          min: 110.0,
-                          max: 225.0,
-                          onChanged: (double newValue) {
-                            setState(() {
-                              height = newValue.round();
-                            });
-                          },
+                        SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            activeTrackColor: Colors.white,
+                            inactiveTrackColor: kDefaultTextColor,
+                            thumbColor: Color(0xFFFF0167),
+                            overlayColor: Color(0x29FF0167),
+                            thumbShape:
+                                RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                            overlayShape:
+                                RoundSliderOverlayShape(overlayRadius: 30.0),
+                          ),
+                          child: Slider(
+                            value: height.toDouble(),
+                            min: 110.0,
+                            max: 225.0,
+                            onChanged: (double newValue) {
+                              setState(() {
+                                height = newValue.round();
+                              });
+                            },
+                          ),
                         )
                       ],
                     ),
